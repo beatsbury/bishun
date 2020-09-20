@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- <script type="module" src="bishun.js"></script> -->
+
+    <button id="button">TEST</button>
+    <script src="lib/papaparse.min.js"></script>
+    <script>
+
+        document.getElementById('button').addEventListener('click', () => {
+            
+            Papa.parse("./makemeahanzi_decomp_google.csv", {
+
+                header: true,
+                download: true,
+                step: (row) => {
+                    if (row.data.Character === '毙') {
+                        console.log('Pinyin: ', row.data.Pinyin);
+                        console.log('Definition: ', row.data.Definition);
+                        console.log('Type: ', row.data.Type);
+                        console.log('Decomposition: ', row.data.Decomposition);
+                        console.log('Semantic: ', row.data.Semantic);
+                        console.log('Phonetic: ', row.data.Phonetic);
+                    }
+                                    },
+                complete: (results) => {
+                
+                }
+
+            });
+        });
+        
+    </script>
+
+</body>
+
+</html>
