@@ -5,40 +5,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="./modules/bishun.js"></script>
 </head>
 
 <body>
 
-    <!-- <script type="module" src="bishun.js"></script> -->
-
+    <input id="input" size="1" maxlength="1" lang="CHI" type="text">
     <button id="button">TEST</button>
-    <script src="lib/papaparse.min.js"></script>
+    <script>
+        //import {getInfo} from './modules/bishun.js';
+        document.getElementById('input').addEventListener('click', getInfo('input'));
+
+    </script>
+
+    <!-- <script src="lib/papaparse.min.js"></script>
     <script>
 
+
+
         document.getElementById('button').addEventListener('click', () => {
-            
+
+            let inputHanzi = document.getElementById('input').value;
+            let numRows = 0;
+
             Papa.parse("./makemeahanzi_decomp_google.csv", {
 
                 header: true,
                 download: true,
-                step: (row) => {
-                    if (row.data.Character === '毙') {
-                        console.log('Pinyin: ', row.data.Pinyin);
-                        console.log('Definition: ', row.data.Definition);
-                        console.log('Type: ', row.data.Type);
-                        console.log('Decomposition: ', row.data.Decomposition);
-                        console.log('Semantic: ', row.data.Semantic);
-                        console.log('Phonetic: ', row.data.Phonetic);
+                step: (row, parser) => {
+
+                    numRows += 1;
+
+                    if (row.data.Character === inputHanzi) {
+                        generateInfo(row.data);
+                        parser.abort();
                     }
-                                    },
+                },
                 complete: (results) => {
-                
+                    console.log(numRows);
                 }
 
             });
+
+            function generateInfo(data) {
+
+
+                console.log('Pinyin: ', data.Pinyin);
+                console.log('Definition: ', data.Definition);
+                console.log('Decomposition: ', data.Decomposition);
+                console.log('Type: ', data.Type);
+                if (data.Type === 'pictophonetic') {
+                    console.log('Semantic: ', data.Semantic);
+                    console.log('Phonetic: ', data.Phonetic);
+                }
+
+
+            }
         });
-        
-    </script>
+
+    </script> -->
 
 </body>
 
