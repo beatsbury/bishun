@@ -3,7 +3,9 @@ function getInfo(hanzi_input) {
 
     let numRows = 0;
 
-    Papa.parse("https://cdn.jsdelivr.net/gh/beatsbury/bishun/modules/hanzi_decomp_new.csv", {
+
+    // https://cdn.jsdelivr.net/gh/beatsbury/bishun/modules/
+    Papa.parse("hanzi_decomp_new.csv", {
 
         header: true,
         download: true,
