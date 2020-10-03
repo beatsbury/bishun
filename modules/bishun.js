@@ -9,6 +9,9 @@ function getInfo(hanzi_input) {
 
         header: true,
         download: true,
+        downloadRequestHeaders: {
+            "Access-Control-Allow-Headers":"*"
+        }
         step: (row, parser) => {
 
             numRows += 1;
