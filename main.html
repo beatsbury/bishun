@@ -18,7 +18,8 @@
 
     </script> -->
 
-    <script src="modules/papaparse.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
+    <!-- <script src="modules/papaparse.min.js"></script> -->
     <script>
 
 
@@ -28,7 +29,8 @@
             let inputHanzi = document.getElementById('input').value;
             let numRows = 0;
 
-            Papa.parse("modules/hanzi_decomp_new.csv", {
+            Papa.parse("https://cdn.jsdelivr.net/gh/beatsbury/bishun/modules/hanzi_decomp_new.csv", {
+            //Papa.parse("modules/hanzi_decomp_new.csv", {
 
                 header: true,
                 download: true,
