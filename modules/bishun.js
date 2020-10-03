@@ -10,7 +10,9 @@ function getInfo(hanzi_input) {
         header: true,
         download: true,
         downloadRequestHeaders: {
-            "Access-Control-Allow-Headers":"*"
+            'Access-Control-Request-Headers':'*',
+            'Origin':'китрадь.рф'
+
         }
         step: (row, parser) => {
 
