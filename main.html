@@ -4,80 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- <script src="./modules/bishun.js"></script> -->
+    <title>Bishun test</title>    
 </head>
 
 <body>
 
     <input id="input" size="1" maxlength="1" type="text">
     <button id="button">TEST</button>
-    <!-- <script>
-        //import {getInfo} from './modules/bishun.js';
-        document.getElementById('input').addEventListener('click', getInfo('input'));
+    
+    <script src="/modules/bishun.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script> -->
+    <script src="modules/papaparse.min.js"></script>
 
-    </script> -->
-
-    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
-    <!-- <script src="modules/papaparse.min.js"></script> -->
     <script>
-
-
 
         document.getElementById('button').addEventListener('click', () => {
 
-            let inputHanzi = document.getElementById('input').value;
-            let numRows = 0;
+            let hanzi_input = document.getElementById('input').value;
 
-            Papa.parse("https://cdn.jsdelivr.net/gh/beatsbury/bishun/modules/hanzi_decomp_new.csv", {
-            //Papa.parse("modules/hanzi_decomp_new.csv", {
+            getInfo(hanzi_input);
 
-                header: true,
-                download: true,
-                step: (row, parser) => {
-
-                    numRows += 1;
-
-                    if (row.data.character === inputHanzi) {
-                        generateInfo(row.data);
-                        parser.abort();
-                    }
-                },
-                complete: (results) => {
-                    console.log(numRows);
-                }
-
-            });
-
-            function generateInfo(data) {
-
-                console.clear();
-
-                for (const key in data) {
-                    if (data.hasOwnProperty(key)) {
-                        const element = data[key];
-                        console.log(String(key) + ': ', element);
-                        
-                    }
-                }
-
-                // console.log('Rank: ', data.rank);
-                // console.log('LWO: ', data.LWO);
-                // console.log('Pinyin: ', data.pinyin);
-                // console.log('Definition: ', data.definition);
-                // console.log('Decomposition: ', data.decomposition);
-                // console.log('Type: ', data.type);
-                // if (data.type === 'pictophonetic') {
-                //     console.log('Semantic: ', data.semantic);
-                //     console.log('Phonetic: ', data.phonetic);
-                // }
-
-
-            }
         });
 
     </script>
-
+    
 </body>
 
 </html>

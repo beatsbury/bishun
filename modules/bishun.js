@@ -1,15 +1,9 @@
-import "/lib/papaparse.min.js";
-//import "/lib/hanzi-writer.min.js";
 
-// var Bishun = {};
-// Bishun.getInfo = getInfo;
+function getInfo(hanzi_input) {
 
-function getInfo(elementId = 'inputField') {
-
-    let inputHanzi = document.getElementById(elementId).value;
     let numRows = 0;
 
-    Papa.parse("./makemeahanzi_decomp_google.csv", {
+    Papa.parse("/modules/hanzi_decomp_new.csv", {
 
         header: true,
         download: true,
@@ -17,7 +11,7 @@ function getInfo(elementId = 'inputField') {
 
             numRows += 1;
 
-            if (row.data.Character === inputHanzi) {
+            if (row.data.character === hanzi_input) {
                 generateInfo(row.data);
                 parser.abort();
             }
@@ -30,21 +24,16 @@ function getInfo(elementId = 'inputField') {
 
     function generateInfo(data) {
 
+        console.clear();
 
-        console.log('Pinyin: ', data.Pinyin);
-        console.log('Definition: ', data.Definition);
-        console.log('Decomposition: ', data.Decomposition);
-        console.log('Type: ', data.Type);
-        if (data.Type === 'pictophonetic') {
-            console.log('Semantic: ', data.Semantic);
-            console.log('Phonetic: ', data.Phonetic);
+        for (const key in data) {
+            if (data.hasOwnProperty(key)) {
+                const element = data[key];
+                console.log(String(key) + ': ', element);
+
+            }
         }
-
 
     }
 
-}
-
-function test1() {
-    return 4;
 }
