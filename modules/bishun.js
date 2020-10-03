@@ -3,7 +3,7 @@ function getInfo(hanzi_input) {
 
     let numRows = 0;
 
-    Papa.parse("/modules/hanzi_decomp_new.csv", {
+    Papa.parse("hanzi_decomp_new.csv", {
 
         header: true,
         download: true,
